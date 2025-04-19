@@ -297,7 +297,7 @@ const showModal = ref(false)
         <div
           v-for="request in displayedNewRequests"
           :key="request.id"
-          class="w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
           <div class="flex justify-between items-start">
@@ -355,7 +355,7 @@ const showModal = ref(false)
         <div
           v-for="request in displayedInProgressRequests"
           :key="request.id"
-          class="w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
           <div class="flex justify-between items-start">
@@ -413,7 +413,7 @@ const showModal = ref(false)
         <div
           v-for="request in displayedCompletedRequests"
           :key="request.id"
-          class="w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
           <div class="flex justify-between items-start">
