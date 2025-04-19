@@ -110,6 +110,9 @@ const showAllNew = ref(false)
 const showAllInProgress = ref(false)
 const showAllCompleted = ref(false)
 
+const selectedType = ref('')
+const selectedLocation = ref('')
+
 // Отображение только 4 последних заявок
 const displayedNewRequests = computed(() => {
   return showAllNew.value ? [...newRequests.value] : newRequests.value.slice(0, 4)
@@ -158,6 +161,11 @@ const statusConfig = {
 const newRequests = computed(() => {
   return requests.value
     .filter((request) => request.status === 'new')
+    .filter(
+      (request) =>
+        (!selectedType.value || request.type === selectedType.value) &&
+        (!selectedLocation.value || request.location.includes(selectedLocation.value)),
+    )
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 })
 
@@ -167,6 +175,11 @@ const inProgressRequests = computed(() => {
       (request) =>
         request.status === 'in_progress' && request.volunteerId === currentVolunteer.value.id,
     )
+    .filter(
+      (request) =>
+        (!selectedType.value || request.type === selectedType.value) &&
+        (!selectedLocation.value || request.location.includes(selectedLocation.value)),
+    )
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 })
 
@@ -175,6 +188,11 @@ const completedRequests = computed(() => {
     .filter(
       (request) =>
         request.status === 'completed' && request.volunteerId === currentVolunteer.value.id,
+    )
+    .filter(
+      (request) =>
+        (!selectedType.value || request.type === selectedType.value) &&
+        (!selectedLocation.value || request.location.includes(selectedLocation.value)),
     )
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 })
@@ -288,6 +306,45 @@ const showModal = ref(false)
       <h4 class="text-xl font-semibold">{{ currentVolunteer.name }}</h4>
       <p class="text-sm text-gray-600 mt-1">ID: {{ currentVolunteer.id }}</p>
       <a href="tel:+79123456789">{{ currentVolunteer.tel }}</a>
+    </div>
+
+    <!-- Replace your current filter controls with this -->
+    <div class="pt-5 flex gap-7.5">
+      <div class="flex flex-col gap-y-2.5 w-80">
+        <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+          Тип помощи
+        </label>
+        <select
+          v-model="selectedType"
+          class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+        >
+          <option value="">Все</option>
+          <option value="transport">Транспорт</option>
+          <option value="food">Продукты</option>
+          <option value="medicine">Лекарства</option>
+          <option value="other">Другое</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-y-2.5 w-80">
+        <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+          Местоположение
+        </label>
+        <input
+          v-model="selectedLocation"
+          list="locations"
+          placeholder="Введите город"
+          class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+        />
+        <datalist id="locations" class="w-full bg-green">
+          <option value="Москва" class="w-full"></option>
+          <option value="Санкт-Петербург" class="w-full"></option>
+          <option value="Казань" class="w-full"></option>
+          <option value="Новосибирск" class="w-full"></option>
+          <option value="Екатеринбург" class="w-full"></option>
+          <option value="Ростов-на-Дону" class="w-full"></option>
+        </datalist>
+      </div>
     </div>
 
     <!-- Секция "Новые заявки" -->
