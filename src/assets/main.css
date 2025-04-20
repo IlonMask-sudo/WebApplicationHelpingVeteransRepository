@@ -23,3 +23,7 @@
 .font-bold {
   font-weight: 700;
 }
+
+.mx-auto {
+  margin: 0 auto;
+}

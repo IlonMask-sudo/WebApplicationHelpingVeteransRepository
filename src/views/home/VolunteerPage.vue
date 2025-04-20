@@ -275,7 +275,7 @@ const showModal = ref(false)
       v-if="showModal"
       class="fixed inset-0 z-50 overflow-y-auto bg-black/50 flex items-center justify-center"
     >
-      <div class="bg-white rounded-[20px] p-10 shadow-lg max-w-lg w-full mx-4 relative">
+      <div class="bg-white rounded-[20px] p-10 shadow-lg w-75 xs:w-100 sm:w-120 mx-4 relative">
         <button
           @click="showModal = false"
           class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -295,6 +295,9 @@ const showModal = ref(false)
             />
           </svg>
         </button>
+        <div
+          class="bg-[url(@/TulaHack_QR_Code.svg)] w-[220px] h-[220px] xs:w-[300px] xs:h-[300px] bg-contain bg-no-repeat bg-center mx-auto"
+        ></div>
         <p class="text-center text-lg font-bold text-[#1F2937] tracking-[0.5%]">
           Интерактиванная карта
         </p>
@@ -308,7 +311,6 @@ const showModal = ref(false)
       <a href="tel:+79123456789">{{ currentVolunteer.tel }}</a>
     </div>
 
-    <!-- Replace your current filter controls with this -->
     <div class="pt-5 flex gap-7.5">
       <div class="flex flex-col gap-y-2.5 w-80">
         <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
