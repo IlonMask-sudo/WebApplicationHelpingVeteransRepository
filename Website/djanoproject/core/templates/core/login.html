@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="flex justify-center items-center mt-8">
+  <div class="shadow-lg w-full max-w-lg flex flex-col gap-y-7 p-10 bg-white rounded-[20px]">
+    <h2 class="text-4xl font-semibold tracking-[0.5%] text-center text-[#1F2937]">Вход</h2>
+
+    {% if form.errors %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+      <p>Ошибка входа. Пожалуйста, проверьте введенные данные.</p>
+    </div>
+    {% endif %}
+
+    <form method="post" class="flex flex-col gap-y-5">
+      {% csrf_token %}
+      <div class="flex flex-col gap-y-2.5">
+        <label class="flex flex-col gap-y-2.5">
+          <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">Имя пользователя</span>
+          {{ form.username }}
+        </label>
+
+        <label class="flex flex-col gap-y-2.5">
+          <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">Пароль</span>
+          {{ form.password }}
+        </label>
+      </div>
+
+      <div class="flex justify-between pt-2.5">
+        <div class="flex space-x-4">
+          <a href="{% url 'signup_volunteer' %}" class="px-4 py-2 border border-[#2563EB] text-[#2563EB] rounded-lg text-[15px] font-semibold tracking-[0.5%]">
+            Стать волонтёром
+          </a>
+          <a href="{% url 'signup_veteran' %}" class="px-4 py-2 border border-[#2563EB] text-[#2563EB] rounded-lg text-[15px] font-semibold tracking-[0.5%]">
+            Для ветеранов
+          </a>
+        </div>
+        <button type="submit" class="px-4 py-2 bg-[#2563EB] text-white rounded-lg text-[15px] font-semibold tracking-[0.5%] hover:bg-[#1D4ED8] transition-colors">
+          Войти
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  /* Стилизуем поля ввода */
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+</style>
+{% endblock %}
+</body>
+</html>

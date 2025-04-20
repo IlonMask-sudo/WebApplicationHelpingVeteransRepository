@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="flex justify-center items-center py-8">
+  <div class="shadow-lg w-full max-w-lg flex flex-col gap-y-6 p-10 bg-white rounded-[20px]">
+    <h2 class="text-4xl font-semibold tracking-[0.5%] text-center text-[#1F2937]">Регистрация</h2>
+    <p class="text-center text-gray-600 mb-2">{{ role }}</p>
+
+    {% if form.errors %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+      {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+          <p>{{ field }}: {{ error }}</p>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" class="flex flex-col gap-y-4">
+      {% csrf_token %}
+      
+      <div class="grid grid-cols-1 gap-4">
+        <!-- Имя пользователя -->
+        <div class="flex flex-col gap-y-2">
+          <label class="text-sm font-semibold text-[#1F2937] tracking-[0.5%]" for="{{ form.username.id_for_label }}">
+            Имя пользователя
+          </label>
+          {{ form.username }}
+          {% if form.username.errors %}
+            <p class="text-red-500 text-sm">{{ form.username.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="flex flex-col gap-y-2">
+          <label class="text-sm font-semibold text-[#1F2937] tracking-[0.5%]" for="{{ form.email.id_for_label }}">
+            Email
+          </label>
+          {{ form.email }}
+          {% if form.email.errors %}
+            <p class="text-red-500 text-sm">{{ form.email.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Телефон -->
+        <div class="flex flex-col gap-y-2">
+          <label class="text-sm font-semibold text-[#1F2937] tracking-[0.5%]" for="{{ form.phone.id_for_label }}">
+            Телефон
+          </label>
+          {{ form.phone }}
+          {% if form.phone.errors %}
+            <p class="text-red-500 text-sm">{{ form.phone.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Город -->
+        <div class="flex flex-col gap-y-2">
+          <label class="text-sm font-semibold text-[#1F2937] tracking-[0.5%]" for="{{ form.city.id_for_label }}">
+            Город
+          </label>
+          {{ form.city }}
+          {% if form.city.errors %}
+            <p class="text-red-500 text-sm">{{ form.city.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Пароль -->
+        <div class="flex flex-col gap-y-2">
+          <label class="text-sm font-semibold text-[#1F2937] tracking-[0.5%]" for="{{ form.password1.id_for_label }}">
+            Пароль
+          </label>
+          {{ form.password1 }}
+          {% if form.password1.errors %}
+            <p class="text-red-500 text-sm">{{ form.password1.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Подтверждение пароля -->
+        <div class="flex flex-col gap-y-2">
+          <label class="text-sm font-semibold text-[#1F2937] tracking-[0.5%]" for="{{ form.password2.id_for_label }}">
+            Подтверждение пароля
+          </label>
+          {{ form.password2 }}
+          {% if form.password2.errors %}
+            <p class="text-red-500 text-sm">{{ form.password2.errors.0 }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="flex justify-between pt-4 mt-2">
+        <a href="{% url 'login' %}" class="px-4 py-2 border border-[#2563EB] text-[#2563EB] rounded-lg text-[15px] font-semibold tracking-[0.5%]">
+          Уже есть аккаунт
+        </a>
+        <button type="submit" class="px-4 py-2 bg-[#2563EB] text-white rounded-lg text-[15px] font-semibold tracking-[0.5%] hover:bg-[#1D4ED8] transition-colors">
+          Зарегистрироваться
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  /* Стилизуем поля ввода */
+  input[type="text"], input[type="password"], input[type="email"] {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+</style>
+{% endblock %}
+</body>
+</html>

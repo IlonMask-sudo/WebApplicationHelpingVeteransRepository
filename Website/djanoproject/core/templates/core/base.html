@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Помощь ветеранам</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#2563EB',
+                            dark: '#1D4ED8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-size: 15px;
+            text-rendering: optimizeLegibility;
+            background-color: #F5F8FF;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .content-container {
+            padding-top: 80px;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Верхняя навигационная панель -->
+    <div class="fixed top-0 left-0 w-full z-10">
+        <nav class="flex justify-between items-center bg-primary-dark px-10 py-2.5 shadow-md">
+            <a href="{% url 'request_list' %}" class="block font-semibold text-2xl text-white">Помощь ветеранам</a>
+
+            <div class="flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    <div class="flex items-center text-white">
+                        <a href="{% url 'request_list' %}" class="px-4 py-1.5 transition-colors hover:bg-primary/80 rounded-lg">Лента заявок</a>
+                        
+                        {% if user.is_veteran %}
+                            <a href="{% url 'dashboard' %}" class="px-4 py-1.5 transition-colors hover:bg-primary/80 rounded-lg">Мои заявки</a>
+                            <a href="{% url 'create_request' %}" class="px-4 py-1.5 transition-colors hover:bg-primary/80 rounded-lg">Создать заявку</a>
+                        {% endif %}
+                        
+                        <div class="relative group ml-3">
+                            <button class="flex items-center text-white font-medium">
+                                <span class="mr-1">{{ user.username }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+                                <div class="py-1">
+                                    <form action="{% url 'logout' %}" method="post" class="block w-full text-left">
+                                        {% csrf_token %}
+                                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Выйти</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-white font-medium hover:underline">Войти</a>
+                    <a href="{% url 'signup_volunteer' %}" class="px-4 py-1.5 bg-white text-primary font-medium rounded-lg hover:bg-gray-100 transition-colors">Стать волонтёром</a>
+                    <a href="{% url 'signup_veteran' %}" class="px-4 py-1.5 bg-white text-primary font-medium rounded-lg hover:bg-gray-100 transition-colors">Для ветеранов</a>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="container content-container">
+        {% if messages %}
+            <div class="mb-8">
+                {% for message in messages %}
+                    <div class="bg-{% if message.tags == 'error' %}red-100 text-red-800{% elif message.tags == 'success' %}green-100 text-green-800{% else %}blue-100 text-blue-800{% endif %} p-4 rounded-lg">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
