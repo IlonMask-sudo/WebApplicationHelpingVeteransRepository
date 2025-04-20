@@ -86,7 +86,7 @@ const handleSubmit = async () => {
 <template>
   <div class="bg-[#F5F8FF] relative h-screen">
     <div
-      class="absolute top-1/2 left-1/2 -translate-1/2 shadow-lg w-120 flex flex-col gap-y-7.5 p-10 bg-white rounded-[20px]"
+      class="absolute top-1/2 left-1/2 -translate-1/2 shadow-lg w-85 xs:w-100 sm:w-120 flex flex-col gap-y-7.5 p-10 bg-white rounded-[20px]"
     >
       <h2 class="text-4xl font-semibold tracking-[0.5%] text-center text-[#1F2937]">Регистрация</h2>
 
@@ -94,28 +94,26 @@ const handleSubmit = async () => {
       <form v-if="currentStep === 1" @submit.prevent="nextStep" class="flex flex-col gap-y-5">
         <div class="flex flex-col gap-y-2.5">
           <label class="flex flex-col gap-y-2.5">
-            <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">Почта</span>
+            <span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]">Почта</span>
             <input
               v-model="formData.email"
               type="email"
-              placeholder="Введите ваш email"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-none focus:outline-[#2563EB]"
             />
           </label>
 
           <label class="flex flex-col gap-y-2.5">
-            <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">Пароль</span>
+            <span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]">Пароль</span>
             <div class="relative">
               <input
                 v-model="formData.password"
                 :type="showPassword ? 'text' : 'password'"
-                placeholder="Введите пароль"
-                class="w-full px-4 py-2 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                class="w-full px-4 py-2 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-none focus:outline-[#2563EB]"
               />
               <button
                 type="button"
                 @click="togglePasswordVisibility"
-                class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center text-xs leading-5"
               >
                 <svg
                   v-if="!showPassword"
@@ -184,20 +182,19 @@ const handleSubmit = async () => {
           </label>
 
           <label class="flex flex-col gap-y-2.5">
-            <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]"
+            <span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]"
               >Подтверждение пароля</span
             >
             <div class="relative">
               <input
                 v-model="formData.confirmPassword"
                 :type="showConfirmPassword ? 'text' : 'password'"
-                placeholder="Повторите пароль"
-                class="w-full px-4 py-2 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                class="w-full px-4 py-2 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-none focus:outline-[#2563EB]"
               />
               <button
                 type="button"
                 @click="toggleConfirmPasswordVisibility"
-                class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center text-xs leading-5"
               >
                 <svg
                   v-if="!showConfirmPassword"
@@ -274,10 +271,10 @@ const handleSubmit = async () => {
             v-model="formData.isVolunteer"
             class="w-4 h-4 text-[#2563EB] rounded border-[#E5E7EB] focus:ring-[#2563EB]"
           />
-          <label for="userType" class="text-sm text-[#1F2937]"> Волонтер </label>
+          <label for="userType" class="text-xs text-[#1F2937]"> Волонтер </label>
         </div>
 
-        <div v-if="errorMessage" class="text-red-500 text-sm">
+        <div v-if="errorMessage" class="text-red-500 text-xs">
           {{ errorMessage }}
         </div>
 
@@ -303,40 +300,40 @@ const handleSubmit = async () => {
       <form v-else @submit.prevent="handleSubmit" class="flex flex-col gap-y-5">
         <div class="flex flex-col gap-y-2.5">
           <label class="flex flex-col gap-y-2.5">
-            <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">ФИО</span>
+            <span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]">ФИО</span>
             <input
               v-model="formData.fullName"
               type="text"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             />
           </label>
         </div>
 
         <div class="flex flex-col gap-y-2.5">
           <label class="flex flex-col gap-y-2.5">
-            <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">Телефон</span>
+            <span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]">Телефон</span>
             <input
               v-model="formData.phone"
               type="tel"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             />
           </label>
         </div>
 
         <div class="flex flex-col gap-y-2.5">
           <label class="flex flex-col gap-y-2.5">
-            <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]"
+            <span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]"
               >Город проживания</span
             >
             <input
               v-model="formData.city"
               type="text"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             />
           </label>
         </div>
 
-        <div v-if="errorMessage" class="text-red-500 text-sm">
+        <div v-if="errorMessage" class="text-red-500 text-xs">
           {{ errorMessage }}
         </div>
 

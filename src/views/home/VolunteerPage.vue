@@ -258,8 +258,8 @@ const showModal = ref(false)
 
 <template>
   <section class="px-10 pt-25">
-    <div class="flex justify-between items-center pb-5">
-      <h3 class="font-semibold tracking-[0.5%] text-[#1F2937] text-[32px] pb-5">
+    <div class="flex flex-col xs:flex-row justify-between xs:items-center gap-2.5 pb-5">
+      <h3 class="font-semibold tracking-[0.5%] text-[#1F2937] text-[32px] xs:pb-5">
         Заявки от ветеранов
       </h3>
       <button
@@ -304,19 +304,19 @@ const showModal = ref(false)
     <!-- Информация о волонтере -->
     <div class="p-4 bg-blue-50 rounded-lg">
       <h4 class="text-xl font-semibold">{{ currentVolunteer.name }}</h4>
-      <p class="text-sm text-gray-600 mt-1">ID: {{ currentVolunteer.id }}</p>
+      <p class="text-xs text-gray-600 mt-1">ID: {{ currentVolunteer.id }}</p>
       <a href="tel:+79123456789">{{ currentVolunteer.tel }}</a>
     </div>
 
     <!-- Replace your current filter controls with this -->
     <div class="pt-5 flex gap-7.5">
       <div class="flex flex-col gap-y-2.5 w-80">
-        <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+        <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
           Тип помощи
         </label>
         <select
           v-model="selectedType"
-          class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+          class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
         >
           <option value="">Все</option>
           <option value="transport">Транспорт</option>
@@ -327,14 +327,14 @@ const showModal = ref(false)
       </div>
 
       <div class="flex flex-col gap-y-2.5 w-80">
-        <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+        <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
           Местоположение
         </label>
         <input
           v-model="selectedLocation"
           list="locations"
           placeholder="Введите город"
-          class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+          class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
         />
         <datalist id="locations" class="w-full bg-green">
           <option value="Москва" class="w-full"></option>
@@ -354,10 +354,10 @@ const showModal = ref(false)
         <div
           v-for="request in displayedNewRequests"
           :key="request.id"
-          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-xs border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
-          <div class="flex justify-between items-start">
+          <div class="flex flex-col xs:flex-row justify-between items-start gap-2.5">
             <div>
               <h4 class="text-lg font-bold text-[#1F2937] tracking-[0.5%]">{{ request.title }}</h4>
               <div class="mt-3 text-xs text-[#9CA3AF]">Создано: {{ request.createdAt }}</div>
@@ -392,10 +392,10 @@ const showModal = ref(false)
           </button>
         </div>
       </div>
-      <div class="flex justify-end mt-5" v-if="newRequests.length >= 4">
+      <div class="flex justify-end pb-2.5" v-if="newRequests.length >= 4">
         <button
           @click="showAllNew = !showAllNew"
-          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors"
+          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors w-full xs:w-fit"
         >
           {{ showAllNew ? 'Скрыть' : 'Все' }}
         </button>
@@ -412,10 +412,10 @@ const showModal = ref(false)
         <div
           v-for="request in displayedInProgressRequests"
           :key="request.id"
-          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-xs border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
-          <div class="flex justify-between items-start">
+          <div class="flex flex-col xs:flex-row justify-between items-start gap-2.5">
             <div>
               <h4 class="text-lg font-bold text-[#1F2937] tracking-[0.5%]">{{ request.title }}</h4>
               <div class="mt-3 text-xs text-[#9CA3AF]">Создано: {{ request.createdAt }}</div>
@@ -450,10 +450,10 @@ const showModal = ref(false)
           </button>
         </div>
       </div>
-      <div class="flex justify-end mt-5" v-if="inProgressRequests.length >= 4">
+      <div class="flex justify-end pb-5" v-if="inProgressRequests.length >= 4">
         <button
           @click="showAllInProgress = !showAllInProgress"
-          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors"
+          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors w-full xs:w-fit"
         >
           {{ showAllInProgress ? 'Скрыть' : 'Все' }}
         </button>
@@ -470,10 +470,10 @@ const showModal = ref(false)
         <div
           v-for="request in displayedCompletedRequests"
           :key="request.id"
-          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-xs border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
-          <div class="flex justify-between items-start">
+          <div class="flex flex-col xs:flex-row justify-between items-start gap-2.5">
             <div>
               <h4 class="text-lg font-bold text-[#1F2937] tracking-[0.5%]">{{ request.title }}</h4>
               <div class="mt-3 text-xs text-[#9CA3AF]">Создано: {{ request.createdAt }}</div>
@@ -509,10 +509,10 @@ const showModal = ref(false)
         </div>
       </div>
       <!-- Кнопка "Все" для завершенных заявок -->
-      <div class="flex justify-end mt-5" v-if="completedRequests.length >= 4">
+      <div class="flex justify-end pb-5" v-if="completedRequests.length >= 4">
         <button
           @click="showAllCompleted = !showAllCompleted"
-          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors"
+          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors w-full xs:w-fit"
         >
           {{ showAllCompleted ? 'Скрыть' : 'Все' }}
         </button>
@@ -553,25 +553,25 @@ const showModal = ref(false)
 
         <form @submit.prevent="updateRequest" class="flex flex-col gap-y-2.5">
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Тема заявки
             </label>
             <input
               v-model="currentRequest.title"
               type="text"
               required
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             />
           </div>
 
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Тип помощи
             </label>
             <select
               v-model="currentRequest.type"
               required
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             >
               <option value="transport">Транспорт</option>
               <option value="food">Продукты</option>
@@ -581,30 +581,30 @@ const showModal = ref(false)
           </div>
 
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Описание
             </label>
             <textarea
               v-model="currentRequest.description"
               rows="5"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 resize-none"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 resize-none"
             ></textarea>
           </div>
 
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Местоположение
             </label>
             <input
               v-model="currentRequest.location"
               type="text"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] bg-gray-100 rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             />
           </div>
 
           <a
             @click.prevent="openYandexMap"
-            class="block text-[#2563EB] text-sm font-medium tracking-[0.5%] cursor-pointer hover:underline"
+            class="block text-[#2563EB] text-xs font-medium tracking-[0.5%] cursor-pointer hover:underline"
           >
             Посмотреть на карте
           </a>

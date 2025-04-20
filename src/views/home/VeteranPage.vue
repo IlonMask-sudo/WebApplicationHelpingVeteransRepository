@@ -218,7 +218,7 @@ const changeStatus = (request, newStatus) => {
   <section class="px-10 pt-25">
     <!-- Секция активных заявок -->
     <div class="mb-12">
-      <div class="flex justify-between items-center pb-5">
+      <div class="flex flex-col xs:flex-row justify-between xs:items-center gap-2.5 pb-5">
         <h3 class="font-semibold tracking-[0.5%] text-[#1F2937] text-[32px]">Активные заявки</h3>
         <button
           type="button"
@@ -234,10 +234,10 @@ const changeStatus = (request, newStatus) => {
         <div
           v-for="request in displayedActiveRequests"
           :key="request.id"
-          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-xs border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
-          <div class="flex justify-between items-start">
+          <div class="flex flex-col xs:flex-row justify-between items-start gap-2.5">
             <div>
               <h4 class="text-lg font-bold text-[#1F2937] tracking-[0.5%]">{{ request.title }}</h4>
               <div class="mt-3 text-xs text-[#9CA3AF]">Создано: {{ request.createdAt }}</div>
@@ -274,10 +274,10 @@ const changeStatus = (request, newStatus) => {
       </div>
 
       <!-- Кнопка "Все" для активных заявок -->
-      <div class="flex justify-end mt-5" v-if="activeRequests.length >= 4">
+      <div class="flex justify-end pb-5" v-if="activeRequests.length >= 4">
         <button
           @click="showAllActive = !showAllActive"
-          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors"
+          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors w-full xs:w-fit"
         >
           {{ showAllActive ? 'Скрыть' : 'Все' }}
         </button>
@@ -298,10 +298,10 @@ const changeStatus = (request, newStatus) => {
         <div
           v-for="request in displayedInProgressRequests"
           :key="request.id"
-          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+          class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-xs border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
           @click="openRequest(request)"
         >
-          <div class="flex justify-between items-start">
+          <div class="flex flex-col xs:flex-row justify-between items-start gap-2.5">
             <div>
               <h4 class="text-lg font-bold text-[#1F2937] tracking-[0.5%]">{{ request.title }}</h4>
               <div class="mt-3 text-xs text-[#9CA3AF]">Создано: {{ request.createdAt }}</div>
@@ -338,10 +338,10 @@ const changeStatus = (request, newStatus) => {
       </div>
 
       <!-- Кнопка "Все" для заявок в работе -->
-      <div class="flex justify-end mt-5" v-if="inProgressRequests.length >= 4">
+      <div class="flex justify-end pb-5" v-if="inProgressRequests.length >= 4">
         <button
           @click="showAllInProgress = !showAllInProgress"
-          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors"
+          class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors w-full xs:w-fit"
         >
           {{ showAllInProgress ? 'Скрыть' : 'Все' }}
         </button>
@@ -364,10 +364,10 @@ const changeStatus = (request, newStatus) => {
           <div
             v-for="request in displayedCanceledRequests"
             :key="request.id"
-            class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+            class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-xs border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
             @click="openRequest(request)"
           >
-            <div class="flex justify-between items-start">
+            <div class="flex flex-col xs:flex-row justify-between items-start gap-2.5">
               <div>
                 <h4 class="text-lg font-bold text-[#1F2937] tracking-[0.5%]">
                   {{ request.title }}
@@ -408,10 +408,10 @@ const changeStatus = (request, newStatus) => {
         </div>
 
         <!-- Кнопка "Все" для отозванных заявок -->
-        <div class="flex justify-end mt-5" v-if="canceledRequests.length >= 4">
+        <div class="flex justify-end pb-5" v-if="canceledRequests.length >= 4">
           <button
             @click="showAllCanceled = !showAllCanceled"
-            class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors"
+            class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors w-full xs:w-fit"
           >
             {{ showAllCanceled ? 'Скрыть' : 'Все' }}
           </button>
@@ -428,10 +428,10 @@ const changeStatus = (request, newStatus) => {
           <div
             v-for="request in displayedCompletedRequests"
             :key="request.id"
-            class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-sm border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
+            class="w-full md:w-[calc(50%-10px)] p-5 bg-white rounded-lg flex flex-col gap-y-4 shadow-xs border border-[#E5E7EB] cursor-pointer hover:shadow-md transition-shadow"
             @click="openRequest(request)"
           >
-            <div class="flex justify-between items-start">
+            <div class="flex flex-col xs:flex-row justify-between items-start gap-2.5">
               <div>
                 <h4 class="text-lg font-bold text-[#1F2937] tracking-[0.5%]">
                   {{ request.title }}
@@ -472,10 +472,10 @@ const changeStatus = (request, newStatus) => {
         </div>
 
         <!-- Кнопка "Все" для завершенных заявок -->
-        <div class="flex justify-end mt-5" v-if="completedRequests.length >= 4">
+        <div class="flex justify-end pb-5" v-if="completedRequests.length >= 4">
           <button
             @click="showAllCompleted = !showAllCompleted"
-            class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors"
+            class="px-4 py-2 text-[#2563EB] border border-[#2563EB] rounded-lg hover:bg-[#2563EB] hover:text-white transition-colors w-full xs:w-fit"
           >
             {{ showAllCompleted ? 'Скрыть' : 'Все' }}
           </button>
@@ -518,25 +518,25 @@ const changeStatus = (request, newStatus) => {
         <form @submit.prevent="createRequest" class="flex flex-col gap-y-2.5">
           <div class="flex flex-col gap-y-2.5">
             <div class="flex flex-col gap-y-2.5">
-              <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+              <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
                 Тема заявки
               </label>
               <input
                 v-model="form.title"
                 type="text"
                 required
-                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
               />
             </div>
 
             <div class="flex flex-col gap-y-2.5">
-              <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+              <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
                 Тип помощи
               </label>
               <select
                 v-model="form.type"
                 required
-                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
               >
                 <option value="" disabled selected>Выберите тип помощи</option>
                 <option value="transport">Транспорт</option>
@@ -547,24 +547,24 @@ const changeStatus = (request, newStatus) => {
             </div>
 
             <div class="flex flex-col gap-y-2.5">
-              <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+              <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
                 Описание
               </label>
               <textarea
                 v-model="form.description"
                 rows="5"
-                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 resize-none"
+                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 resize-none"
               ></textarea>
             </div>
 
             <div class="flex flex-col gap-y-2.5">
-              <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+              <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
                 Местоположение
               </label>
               <input
                 v-model="form.location"
                 type="text"
-                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
               />
             </div>
           </div>
@@ -619,7 +619,7 @@ const changeStatus = (request, newStatus) => {
 
         <form @submit.prevent="updateRequest" class="flex flex-col gap-y-2.5">
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Тема заявки
             </label>
             <input
@@ -628,12 +628,12 @@ const changeStatus = (request, newStatus) => {
               required
               :readonly="!isEditing"
               :class="{ 'bg-gray-100': !isEditing }"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             />
           </div>
 
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Тип помощи
             </label>
             <select
@@ -641,7 +641,7 @@ const changeStatus = (request, newStatus) => {
               required
               :disabled="!isEditing"
               :class="{ 'bg-gray-100': !isEditing }"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             >
               <option value="transport">Транспорт</option>
               <option value="food">Продукты</option>
@@ -651,7 +651,7 @@ const changeStatus = (request, newStatus) => {
           </div>
 
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Описание
             </label>
             <textarea
@@ -659,12 +659,12 @@ const changeStatus = (request, newStatus) => {
               rows="5"
               :readonly="!isEditing"
               :class="{ 'bg-gray-100': !isEditing }"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 resize-none"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 resize-none"
             ></textarea>
           </div>
 
           <div class="flex flex-col gap-y-2.5">
-            <label class="block text-sm font-semibold text-[#1F2937] tracking-[0.5%]">
+            <label class="block text-xs font-semibold text-[#1F2937] tracking-[0.5%]">
               Местоположение
             </label>
             <input
@@ -672,7 +672,7 @@ const changeStatus = (request, newStatus) => {
               type="text"
               :readonly="!isEditing"
               :class="{ 'bg-gray-100': !isEditing }"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
             />
           </div>
 

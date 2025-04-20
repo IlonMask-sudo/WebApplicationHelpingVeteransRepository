@@ -46,7 +46,7 @@ const handleSubmit = async () => {
 <template>
   <div class="bg-[#F5F8FF] relative h-screen">
     <div
-      class="absolute top-1/2 left-1/2 -translate-1/2 shadow-lg w-120 flex flex-col gap-y-7.5 p-10 bg-white rounded-[20px]"
+      class="absolute top-1/2 left-1/2 -translate-1/2 shadow-lg w-85 xs:w-100 sm:w-120 flex flex-col gap-y-7.5 p-10 bg-white rounded-[20px]"
     >
       <h2 class="text-4xl font-semibold tracking-[0.5%] text-center text-[#1F2937]">Вход</h2>
 
@@ -55,7 +55,7 @@ const handleSubmit = async () => {
         <label class="flex-1 w-1/2 cursor-pointer">
           <input type="radio" v-model="userType" value="volunteer" class="hidden peer" />
           <div
-            class="p-2.5 text-[#1F2937] text-center text-[15px] font-semibold tracking-[0.5%] bg-[#F3F4F6] rounded-l-lg peer-checked:border peer-checked:border-[#E5E7EB] peer-checked:shadow-sm peer-checked:bg-white"
+            class="p-2.5 text-[#1F2937] text-center text-[15px] font-semibold tracking-[0.5%] bg-[#F3F4F6] rounded-l-lg peer-checked:border peer-checked:border-[#E5E7EB] peer-checked:shadow-xs peer-checked:bg-white"
           >
             Волонтер
           </div>
@@ -65,7 +65,7 @@ const handleSubmit = async () => {
         <label class="flex-1 w-1/2 cursor-pointer">
           <input type="radio" v-model="userType" value="veteran" class="hidden peer" />
           <div
-            class="p-2.5 text-[#1F2937] text-center text-[15px] font-semibold tracking-[0.5%] bg-[#F3F4F6] rounded-r-lg peer-checked:border peer-checked:border-[#E5E7EB] peer-checked:shadow-sm peer-checked:bg-white"
+            class="p-2.5 text-[#1F2937] text-center text-[15px] font-semibold tracking-[0.5%] bg-[#F3F4F6] rounded-r-lg peer-checked:border peer-checked:border-[#E5E7EB] peer-checked:shadow-xs peer-checked:bg-white"
           >
             Ветеран
           </div>
@@ -76,25 +76,25 @@ const handleSubmit = async () => {
       <form @submit.prevent="handleSubmit" class="flex flex-col gap-y-5">
         <div class="flex flex-col gap-y-2.5">
           <label class="flex flex-col gap-y-2.5">
-            <span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">Почта</span>
+            <span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]">Почта</span>
             <input
               v-model="email"
               type="email"
-              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              class="w-full px-4 py-2.5 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-none focus:outline-[#2563EB]"
           /></label>
 
           <label class="flex flex-col gap-y-2.5"
-            ><span class="mb-2.5 text-sm font-semibold text-[#1F2937] tracking-[0.5%]">Пароль</span>
+            ><span class="mb-2.5 text-xs font-semibold text-[#1F2937] tracking-[0.5%]">Пароль</span>
             <div class="relative mt-2.5">
               <input
                 v-model="password"
                 :type="showPassword ? 'text' : 'password'"
-                class="w-full px-4 py-2 border border-[#E5E7EB] rounded-lg shadow-sm focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+                class="w-full px-4 py-2 border border-[#E5E7EB] rounded-lg shadow-xs focus:border-none focus:outline-[#2563EB]"
               />
               <button
                 type="button"
                 @click="togglePasswordVisibility"
-                class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center text-xs leading-5"
               >
                 <svg
                   v-if="!showPassword"
@@ -164,11 +164,11 @@ const handleSubmit = async () => {
         </div>
 
         <!-- Сообщение об ошибке -->
-        <div v-if="errorMessage" class="text-red-500 text-sm">
+        <div v-if="errorMessage" class="text-red-500 text-xs">
           {{ errorMessage }}
         </div>
 
-        <div class="flex justify-between pt-2.5">
+        <div class="flex justify-between pt-2.5 gap-2.5">
           <router-link to="/auth/register">
             <button
               type="button"

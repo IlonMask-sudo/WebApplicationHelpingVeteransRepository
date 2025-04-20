@@ -25,7 +25,9 @@
           stroke-linejoin="round"
         />
       </svg>
-      <span class="text-white text-base tracking-[0.5%] font-medium">Иванов Иван Иванович</span>
+      <span class="text-white text-base tracking-[0.5%] font-medium hidden xs:block"
+        >Иванов Иван Иванович</span
+      >
     </button>
   </a>
 </template>
